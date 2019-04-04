@@ -4,9 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Handler
-import android.os.PersistableBundle
 import kotlinx.android.synthetic.main.activity_main.*
-import android.support.v4.os.HandlerCompat.postDelayed
+import android.view.animation.AlphaAnimation
+import android.view.animation.DecelerateInterpolator
 
 
 const val PICK_IMAGE = 1
@@ -21,13 +21,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        loadLaunchAnimation()
+
         // selectImageBtn.setOnClickListener {
         //    selectImage()
         // }
 
-        Handler().postDelayed({ selectImage() }, 1000)
+        Handler().postDelayed({ selectImage() }, 2000)
 
 
+    }
+
+    private fun loadLaunchAnimation() {
+        val fadeIn = AlphaAnimation(0f, 1f)
+        fadeIn.interpolator = DecelerateInterpolator() //add this
+        fadeIn.duration = 1800
+
+        logo.startAnimation(fadeIn)
+        logoName.startAnimation(fadeIn)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

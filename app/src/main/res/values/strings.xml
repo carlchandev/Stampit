@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RunnerSight Stampit</string>
+    <string name="rs_name">RUNNER SIGHT</string>
     <string name="shareMessage">RunnerSight</string>
 </resources>
