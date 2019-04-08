@@ -33,17 +33,13 @@ class AddLogoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_logo)
 
-        println("In AddLogoActivity")
         val bundle = intent.extras
         val imageUri = bundle.getString("imageUri")
-        println("imageUri ${imageUri}")
 
-
-        // selectedImage.setImageURI(Uri.parse(imageUri))
         photoEditorView.source.setImageURI(Uri.parse(imageUri))
 
         //Use custom font using latest support library
-        val mTextRobotoTf = ResourcesCompat.getFont(this, R.font.open_sans)
+        val mTextRobotoTf = ResourcesCompat.getFont(this, R.font.candal)
 
         // loading font from assest
         val mEmojiTypeFace = Typeface.createFromAsset(assets, "emojione_android.ttf")

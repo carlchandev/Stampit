@@ -15,30 +15,20 @@ const val FROM_ADD_LOGO = 2
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Make sure this is before calling super.onCreate
-//        setTheme(R.style.AppTheme)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         loadLaunchAnimation()
-
-        // selectImageBtn.setOnClickListener {
-        //    selectImage()
-        // }
-
-        Handler().postDelayed({ selectImage() }, 2000)
-
-
+        Handler().postDelayed({ selectImage() }, 1500)
     }
 
     private fun loadLaunchAnimation() {
-        val fadeIn = AlphaAnimation(0f, 1f)
-        fadeIn.interpolator = DecelerateInterpolator() //add this
-        fadeIn.duration = 1800
+        val fadeOut = AlphaAnimation(1f, 0f)
+        fadeOut.interpolator = DecelerateInterpolator() //add this
+        fadeOut.duration = 1500
 
-        logo.startAnimation(fadeIn)
-        logoName.startAnimation(fadeIn)
+        logo.startAnimation(fadeOut)
+        logoName.startAnimation(fadeOut)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -53,6 +43,10 @@ class MainActivity : AppCompatActivity() {
             val addLogoActivity = Intent(this, AddLogoActivity::class.java)
             addLogoActivity.putExtra("imageUri", data!!.data.toString())
             startActivityForResult(addLogoActivity, FROM_ADD_LOGO)
+
+//            val activity = Intent(this, ImageActivity::class.java)
+//            activity.putExtra("imageUri", data!!.data.toString())
+//            startActivityForResult(activity, FROM_ADD_LOGO)
         }
 
         if (requestCode == FROM_ADD_LOGO) {
@@ -60,16 +54,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-//    override fun onBackPressed() {
-//        super.onBackPressed()
-//        selectImage()
-//    }
-
-//    override fun onResume() {
-//        super.onResume()
-//        selectImage()
-//    }
 
     fun selectImage() {
         val intent = Intent()
